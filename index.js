@@ -1,25 +1,21 @@
-function handleFormSubmit(event) {
-    event.preventDefault(); // Prevent the default form submission
-    
-    // Get form input values
-    let username = event.target.username.value;
-    let email = event.target.email.value;
-    let phone = event.target.phone.value;
-    
-    // Create user object
-    let user = {
-      username: username,
-      email: email,
-      phone: phone
-    };
-  
-    // Store user object in local storage
-    localStorage.setItem('User Details', JSON.stringify(user));
-  
-    // Optionally, you can provide feedback to the user
-    // alert('User details submitted successfully!');
-  }
-  
-  // Exporting the function for testing purposes
-  module.exports = handleFormSubmit;
-  
+function handleFormSubmit(event){
+    event.preventDefault();
+    const name = event.target.username.value;
+    const email = event.target.email.value;
+    const phonenumber = event.target.phone.value;
+
+    const UserDetails = {
+        name,
+        email,
+        phonenumber
+    }
+    localStorage.setItem(UserDetails.email,JSON.stringify(UserDetails))
+    showUserScreen(UserDetails);
+}
+function showUserScreen(UserDetails){
+    const parentELem = document.getElementById('listOfitems');
+    parentELem.innerHTML = parentELem.innerHTML+`<li>${UserDetails.name} - ${UserDetails.email} - ${UserDetails.phonenumber}</li>`;
+
+
+}
+// module.exports = handleFormSubmit;
